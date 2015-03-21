@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Sample Post</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+     <link href="css/tomorrow-night.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Inchoate</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Sample Post</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <li>
+                        <a href="post01.html">First Post</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/postt.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Casting design patters using ASCII Art</h1>
+                        <h2 class="subheading">Feel difficult making geometric shapes using loops, then lets cast your name!</h2>
+                        <span class="meta">March 21, 2015</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>Its most probable that you may have encountered questions of making shapes like the following </p>
+                    <p><pre class = "prettyprinttext">
+     *
+     **
+     * *
+     *  *
+     *   *
+     *    *
+     *******        </pre></p>
+                    <p>Or a bit more simple or complex, with help of loops. However, each different pattern seems to be formed by combination of 2 or more for loops whose relation gets complex and complex with the shape(By relation, I mean how one loop shall control the another loops' variables), and hence there seems to be unique solution for each pattern, which can be understood but not utilized to devise another shape using the same strategy.
+                    </p>
+                    <p>
+                    In this post, I will illustrate an easy strategy with which you can create (almost)all sorts of shapes. So lets get started.            </p>
+                    <p>
+                    Consider this simple program which prints out '*' when a certain condition(or a set of conditions is satisfied), else prints space character next to the previous output. All this is done in the same line for fixed number of times(i.e. the line length or number of <a class = "highlight">columns</a>).
+                    </p>
+                    <p><pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if (/*some_condition*/)
+                      cout<<"*";
+                  else
+                      cout<<" ";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre></p>
+                    <p>
+                    It is just moving from left to right corner and then repeating the same for top to down. Our half job is done, we now need to figure out the mysterious condition for the <a class = "highlight">if</a> block.
+                    </p>
+
+                    <p>
+                    Before moving forward, we need to have a glance at graphs.
+                    </p>
+                    <p>
+                    A typical graph looks like 
+                    </p>
+                    <img class="img-responsive" src="img/coordinate.png"/>
+                    <p>
+                    In the cartesian coordinate system, we represent a point as (<a class = "highlight">x</a>, <a class = "highlight">y</a>), where is <a class = "highlight">x</a> is the x-coordinate or the perpendicular distance from y-axis and <a class = "highlight">y</a> is the y-coordinate or the perpendicular distance from x-axis. For example, the point A is (6,3).
+                    </p>
+                    <p>
+                    In Cartesian Coordinate System, The x-coordinate increases rightwards and the y-coordinate increases upwards. However, our output with respect to <a class = "highlight">i</a> and <a class = "highlight">j</a> in the above snippet is in the following form 
+                    </p>
+                    <p><pre class = "prettyprinttext">
+     |              j 
+  ___|_____________________________
+     |(0,0) (0,1) (0,2) (0,3) (0,4)
+   i |(1,0) (1,1) (1,2) (1,3) (1,4)
+     |(2,0) (2,1) (2,2) (2,3) (2,4)
+     |(3,0) (3,1) (3,2) (3,3) (3,4)
+     |(4,0) (4,1) (4,2) (4,3) (4,4)
+                    </pre></p>
+                    <p>
+                    with <a class = "highlight">i</a> being increasing downwards and <a class = "highlight">j</a> increasing rightwards, with the output fitting in the fourth quadrant. So from now onwards what ever we do in math, we need to replace x with j and y with -i, so as to compensate the above difference in our output format and the standard graph representation.
+                    </p>
+                    <p>
+                    Our primary target is making some geometric shapes, like triangles and rectangles(may be any quadrilateral, and later on, you can modify this for any polygon). And what are these made of? A simple answer, edges. In mathematical words, lines. And in cartsian coordinate system, we can write equation of lines. For example, y = -x looks like 
+                    </p>
+                    <img class="img-responsive" src="img/graph_y=-x.png">
+                    <p>
+                    Look at the fourth quadrant, if we plug the equation in the some_condition of the <a class = "highlight">if</a> block, we should obtain the similar pattern. But before that, we need to make replacements (x with j and y with -i).
+                    <blockquote>
+    Equation of line is<br />
+       y = -x<br />
+    Replacing y with -i and x with j, we get<br />
+    => (-i) = -j<br />
+    => i-j = 0<br />
+                    </blockquote>
+                    Now placing this condition in the if block, we get, <br /><br />
+                    <pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if (i-j == 0) //notice that we haven't plugged =, but == and you know why 
+                      cout<<"*";
+                  else
+                      cout<<" ";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre>
+                    </p>
+                    <pre class = "prettyprinttext">
+ *         
+  *        
+   *       
+    *      
+     *     
+      *    
+       *   
+        *  
+         * 
+          *         </pre>
+                    <p>
+                    Hurray, we got the same output!
+                    </p>
+                    <p>
+                    From now onwards, I am replacing the space in the code snippet with a ' . ', so that other coordniates get visible for debugging purposes. On the final touch, replace this ' . ' again by space if you wish.
+                    </p>
+                    <p>
+                    However, This line extends till infinity(although 10), what if I wish to limit the line between a given range? Say from 2 to 7 on the x-axis. A simple inequality shall hold
+                    <blockquote>
+                    Our inequality is<br />
+                    2 <= x <= 7<br />
+                    Replacing x by j and y by -i, we get<br />
+                    2 <= j <= 7<br/>
+                    And our test condition looks like<br />
+                    2 <= j && j <= 7
+                    </blockquote>
+                    <pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if (i-j == 0 && 2 <= j && j <= 7) 
+                      cout<<"*";
+                  else
+                      cout<<".";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre>
+                    And the output is 
+                    <pre class = "prettyprinttext">
+   ..........
+   ..........
+   ..*.......
+   ...*......
+   ....*.....
+   .....*....
+   ......*...
+   .......*..
+   ..........
+   ..........
+                    </pre>
+                    Observe that we got the same line(segment) but constrained from the x-axis. The same can be done for the y-axis.
+                    </p>
+                    <p>
+                    Everything that we figured out till yet was for a single line, we know need to devise the same for other lines too. And the conditions for other lines can be combined with each other with help of <a class = "highlight">||</a> operator. For example, we obtain another lines as following
+                    <pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if (j == 2 && i >= 2 && i <= 7) 
+                      cout<<"*";
+                  else
+                      cout<<".";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre>
+                    And the output is 
+                    <pre class = "prettyprinttext">
+   ..........
+   ..........
+   ..*.......
+   ..*.......
+   ..*.......
+   ..*.......
+   ..*.......
+   ..*.......
+   ..........
+   ..........
+                    </pre>
+                    <pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if (i == 7 && j >= 2 && j <= 7) 
+                      cout<<"*";
+                  else
+                      cout<<".";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre>
+                    And the output is 
+                    <pre class = "prettyprinttext">
+   ..........
+   ..........
+   ..........
+   ..........
+   ..........
+   ..........
+   ..........
+   ..******..
+   ..........
+   ..........
+                    </pre>
+                    
+                    Combining all the three above using <a class = "highlight">||</a> operator, we get
+                    <pre class = "prettyprint">
+   # include &lt;iostream&gt;
+   # define rows 10
+   # define columns 10
+   using namespace std;
+   int main()
+   {
+        int i, j;
+        for (i = 0 ; i &lt; rows ; ++i)
+        {
+             for (j = 0 ; j &lt; columns ; ++j)
+             {
+                  if ((i == 7 && j >= 2 && j <= 7) || (j == 2 && i >= 2 && i <= 7) || (i-j == 0 && 2 <= j && j <= 7))
+                      cout<<"*";
+                  else
+                      cout<<".";
+             }
+             cout&lt;&lt;endl;
+        }
+        return 0;
+   }                </pre>
+                    And the output is 
+                    <pre class = "prettyprinttext">
+   ..........
+   ..........
+   ..*.......
+   ..**......
+   ..*.*.....
+   ..*..*....
+   ..*...*...
+   ..******..
+   ..........
+   ..........
+                    </pre>
+                    And there we are, done!
+                    </p>
+                    <p>
+                    So whats the general strategy?
+                    <pre class = "prettyprint">
+      1.  Break the figure into simpler entities: points, lines, curves, whatever
+      2.  Include all of these in a set, say A
+      3.  Condition = []
+      4.  for entity in A:
+      5.        equation = write equation of entity
+      6.        equation = replace x by j and y by -i in equation
+      7.        Condition.append(equation) with || operator
+      8.  return Condition
+                    </pre>
+                    Plug the <a class = "highlight">Condition</a> in the topmost code snippet.
+                    </p>
+                    <p>
+                    There is another advantage of this strategy, The most important part of programming, Debugging. Even if it does not appear, but it is easy to debug this snippet once you know how its going. The condition inside the <a class = "highlight">if</a> statement is  magic spell of the program. This magic spell has been divided in logical sections(each representing one entity of the figure) which are separated by <a class = "highlight">||</a>  operator. For the sake of debugging, if anything turns wrong, then comment (using <a class = "highlight">/**/</a>) that logical section and it shall be omitted from the output.
+                    </p>
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/piyush.deshmukh.142">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/PiyushDeshmukh">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
